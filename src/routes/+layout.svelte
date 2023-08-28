@@ -1,9 +1,8 @@
 <script>
-    import RoutedSideBar from "../components/RoutedSideBar/RoutedSideBar.svelte";
+    import "../app.css"
+    import TitleBar from "../components/App/TitleBar.svelte";
 </script>
 
-<!-- This is the most left sidebar used to navigate the application between modes -->
-<!-- Application modes: Editor, Extensions, <Extentions navigations> -->
-<RoutedSideBar />
+<TitleBar />
 
 <slot />
