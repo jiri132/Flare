@@ -1,0 +1,13 @@
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+    border-radius: 10px;
+    /* background-color: transparent; */
+}
+
+body {
+    display: flex;
+}
+
