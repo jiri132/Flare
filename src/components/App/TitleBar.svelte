@@ -23,7 +23,7 @@
 <style>
     .titlebar {
     height: 30px;
-    background: #329ea3;
+    background: #272727;
     user-select: none;
     display: flex;
     justify-content: flex-end;
@@ -31,6 +31,7 @@
     top: 0;
     left: 0;
     right: 0;
+    border-radius: 10px 10px 0px 0px;
   }
   .titlebar-button {
     display: inline-flex;
@@ -40,6 +41,6 @@
     height: 30px;
   }
   .titlebar-button:hover {
-    background: #5bbec3;
+    background: #202020;
   }
 </style>
