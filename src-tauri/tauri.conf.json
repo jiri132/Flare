@@ -7,7 +7,7 @@
     "distDir": "../build"
   },
   "package": {
-    "productName": "CodeEditor",
+    "productName": "Flare",
     "version": "0.1.0"
   },
   "tauri": {
@@ -56,7 +56,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.JIRIDIUM.dev",
+      "identifier": "com.flare.dev",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -82,10 +82,11 @@
     },
     "windows": [
       {
+        "decorations": false,
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "codeeditor",
+        "title": "",
         "width": 800
       }
     ]
