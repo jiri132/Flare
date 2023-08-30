@@ -13,7 +13,7 @@
   "tauri": {
     "allowlist": {
       "fs": {
-        "all": true, 
+        "all": true,
         "readFile": true,
         "writeFile": true,
         "readDir": true,
@@ -34,7 +34,7 @@
         "unminimize": true,
         "startDragging": true
       },
-      "shell":{
+      "shell": {
         "open": true
       },
       "dialog": {
