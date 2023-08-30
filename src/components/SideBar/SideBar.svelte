@@ -38,6 +38,14 @@
     //     await tauri.invoke('show_in_folder', {path});
     // }
 
+    // import { open } from '@tauri-apps/api/dialog'
+    // import { appDir } from '@tauri-apps/api/path';
+
+    // const selected = await open({
+    //     directory: true,
+    //     defaultPath: await appDir(),
+    // });
+
 
     const handleOpenFile = () => {
     }
@@ -65,9 +73,10 @@
         webkitdirectory
         multiple
         on:change={handleFileChange}
-      />
-         <button on:click={() => {show_in_folder("Documenten")}}>Open project</button> 
-    {/if} -->
+      <!-- /> -->
+         <!-- <button on:click={() => {show_in_folder("Documenten")}}>Open project</button>  -->
+         <button on:click={() => {}}>Open project</button>
+    <!-- {/if} -->
 </div>
 
 
