@@ -39,14 +39,17 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        width: 17.5px;
-        height: 17.5px;
+        width: 15px;
+        height: 15px;
         border-radius: 30px;
         border: 0;
-        margin: 6.25px;
+        margin: 7.5px 5px;
     }
     .titlebar-button:hover {
         filter: brightness(65%);
+    }
+    img {
+        width: 12.5px;
     }
 
     #titlebar-close {
