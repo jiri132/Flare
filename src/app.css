@@ -3,11 +3,12 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: transparent;
-    border-radius: 10px;
+    /* border-radius: 100px; */
     /* background-color: transparent; */
 }
 
 body {
     display: flex;
+    /* border-radius: 100px; */
 }
 
