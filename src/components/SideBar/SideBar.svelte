@@ -40,6 +40,7 @@
 
     import { open } from '@tauri-apps/api/dialog'
    import { readDir, type FileEntry } from '@tauri-apps/api/fs'
+    import SideBarButton from './SideBarButton.svelte';
 
     const handleOpenFile = () => {
     
@@ -58,6 +59,16 @@
 
             readDir(project_path, {recursive: true})
             .then((files) => {
+                files.sort((f1 , f2) => {
+                    if (f1.children && !f2.children) {
+                        return -1;
+                    } else if (!f1.children && f2.children) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                });
+
                 project_files = files;
             });
         })
@@ -96,17 +107,28 @@
     <!-- {/if} -->
 
     {#each project_files as file} 
-        {file.name}<br>
+        {#if file.children !== undefined} 
+            <SideBarButton  _fileName={file.name} _filePath={file.path}  _fileType={0}/>
+        {:else}
+            <SideBarButton  _fileName={file.name} _filePath={file.path} _fileType={1} />
+        {/if}
     {/each}
 </div>
 
 
 <style> 
     .SideBar {
-        min-width: 180px;
         margin-top: 30px;
-        height: calc(100vh - 30px);
+        padding: 10px;
+        /* min width / height */
+        min-width: 180px;
+        /* min-height: calc(100vh - 30px); */
+        /* min width / height */
         max-width: 65vw;
+        /* max-height: calc(100vh - 30px); */
+
+        overflow-y: auto;
+
         background-color: rgb(59, 59, 59);
         border-radius: 0px 0px 0px 10px ;
 
@@ -117,7 +139,7 @@
     button {
         border: 0;
         padding: 0.3rem 1rem;
-        margin: 10px;
+        /* margin: 10px; */
         background-color: rgb(0, 136, 255);
     }
     button::hover {
