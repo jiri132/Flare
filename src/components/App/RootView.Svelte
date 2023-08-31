@@ -1,9 +1,8 @@
 <script lang="ts">
-    import { writable, type Writable } from "svelte/store";
+    import { Content } from "../../store";
 
-    export const content : Writable<string> = writable("");
-    
-    let c = $content;
+    $:c = $Content;
+
 </script>
 
 
