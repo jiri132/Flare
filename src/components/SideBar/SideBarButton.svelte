@@ -1,5 +1,6 @@
 <script lang="ts">
-    import type { FileEntry } from "@tauri-apps/api/fs";
+    import { readTextFile, type FileEntry } from "@tauri-apps/api/fs";
+    import { Content } from "../../store";
     const self = arguments[0].__proto__.constructor;
 
     enum fileType {
@@ -12,17 +13,20 @@
     export let _fileName : string;
     export let _filePath : string;
 
-    let show_childeren : boolean = false;
+    let show_children : boolean = false;
 
     function interaction() {
         switch(_fileType) {
             case fileType.directory:
-                // console.log(_directoryChildren); 
-                show_childeren = !show_childeren; 
+                show_children = !show_children; 
                 break;
             case fileType.file:
-
-                break;           
+                readTextFile(_filePath).then((text) => {
+                    console.log("x", text);
+                    Content.set(text);
+                    // console.log(Content)
+                });
+                break;            
         }
     }
 
@@ -32,7 +36,7 @@
     {_fileName}
 </div>
 <div class="children">
-    {#if show_childeren} 
+    {#if show_children} 
     {#each _directoryChildren as child}
         {#if child.children !== undefined} 
             <svelte:component this={self}  _fileName={child.name} _filePath={child.path}  _fileType={0} _directoryChildren={child.children} />
