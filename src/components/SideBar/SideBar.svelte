@@ -1,4 +1,7 @@
 <script lang="ts">
+    import SideBarButton from './SideBarButton.svelte';
+
+
     let width = 180;
     let resize_width = 20;
     let offset = 0;
@@ -32,22 +35,9 @@
         }
     }   
 
-    // import { tauri } from '@tauri-apps/api';
-
-    // async function show_in_folder(path) {
-    //     await tauri.invoke('show_in_folder', {path});
-    // }
 
     import { open } from '@tauri-apps/api/dialog'
-   import { readDir, type FileEntry } from '@tauri-apps/api/fs'
-    import SideBarButton from './SideBarButton.svelte';
-
-    const handleOpenFile = () => {
-    
-    }
-
-    const handleFileChange = () => {
-    }
+    import { readDir, type FileEntry } from '@tauri-apps/api/fs'
 
     let project_path : string;
     let project_files : FileEntry[] = [];
@@ -72,43 +62,19 @@
                 project_files = files;
             });
         })
-    }
-
-
-    
-
-    // function listFiles(dir) {
-    // const files = fs.readdirSync(dir, { withFileTypes: true });
-
-    //     for (const file of files) {
-    //         const filePath = path.join(dir, file.name);
-    //         if (file.isDirectory()) {
-    //             listFiles(filePath);
-    //         } else if (file.isFile() && filePath.endsWith('.svelte')) {
-    //             processFile(filePath);
-    //         }
-    //     }
-    // }   
+    } 
 </script>
 
 <svelte:window  on:mouseup={handleMouseUp} on:mousedown={handleMousedown} on:mousemove={handleMouseMove}  bind:innerWidth/>
 
 <div id="panel" class="SideBar" style="width: {width}px;">
-    <!-- {#if project_path === ""}
-    <button on:click={handleOpenFile}>Select</button>
-    <input
-        type="file"
-        webkitdirectory
-        multiple
-        on:change={handleFileChange}
-      <!-- /> -->
-         <!-- <button on:click={() => {show_in_folder("Documenten")}}>Open project</button>  -->
+    {#if project_path === undefined}
          <button on:click={OpenProject}>Open project</button>
-    <!-- {/if} -->
+    {/if}
 
     {#each project_files as file} 
         {#if file.children !== undefined} 
-            <SideBarButton  _fileName={file.name} _filePath={file.path}  _fileType={0}/>
+            <SideBarButton  _fileName={file.name} _filePath={file.path}  _fileType={0} _directoryChildren={file.children} />
         {:else}
             <SideBarButton  _fileName={file.name} _filePath={file.path} _fileType={1} />
         {/if}
@@ -120,14 +86,13 @@
     .SideBar {
         margin-top: 30px;
         padding: 10px;
-        /* min width / height */
+
         min-width: 180px;
-        /* min-height: calc(100vh - 30px); */
-        /* min width / height */
         max-width: 65vw;
-        /* max-height: calc(100vh - 30px); */
+        max-height: calc(100vh - 50px); /* 50px = padding-top(10) + padding-bottom(10) + margin-top(30)  */
 
         overflow-y: auto;
+        overflow-x: hidden;
 
         background-color: rgb(59, 59, 59);
         border-radius: 0px 0px 0px 10px ;
