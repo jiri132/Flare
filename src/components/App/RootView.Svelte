@@ -1,9 +1,16 @@
-<script>
+<script lang="ts">
+    import { writable, type Writable } from "svelte/store";
+
+    export const content : Writable<string> = writable("");
+    
+    let c = $content;
 </script>
+
 
 <svelte:window />
 
 <textarea>
+    {c}
 </textarea>
 
 
