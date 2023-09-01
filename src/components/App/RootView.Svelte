@@ -9,7 +9,7 @@
 <svelte:window />
 
 <textarea>
-    {c}
+{c}
 </textarea>
 
 
