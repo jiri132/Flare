@@ -32,9 +32,9 @@
 
 </script>
 
-<div on:click={interaction}>
+<button on:click={interaction}>
     {_fileName}
-</div>
+</button>
 <div class="children">
     {#if show_children} 
     {#each _directoryChildren as child}
@@ -50,9 +50,21 @@
 
 
 <style>
+    button {
+        border: 0;
+        text-align: start;
+        background-color: transparent;
+        width: 100%;
+        
+    }
+    button:hover {
+        background-color: rgba(0,0,0,0.1);
+    }
+
     .children {
-        padding-left: 20px;
+        padding-left: 5px;
         /* border: solid red; */
         border-left: 2px solid red;
+        width: 100%;
     }
 </style>
