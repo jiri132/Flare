@@ -10,8 +10,9 @@
 
     export let _fileType : fileType;
     export let _directoryChildren : FileEntry[] = [];
-    export let _fileName : string;
+    export let _fileName : string | undefined;
     export let _filePath : string;
+    // export let _foldable : boolean = false; 
 
     let show_children : boolean = false;
 
@@ -22,9 +23,8 @@
                 break;
             case fileType.file:
                 readTextFile(_filePath).then((text) => {
-                    console.log("x", text);
+                    console.log(text);
                     Content.set(text);
-                    // console.log(Content)
                 });
                 break;            
         }
@@ -62,7 +62,7 @@
     }
 
     .children {
-        padding-left: 5px;
+        margin-left: 5px;
         /* border: solid red; */
         border-left: 2px solid red;
         width: 100%;
