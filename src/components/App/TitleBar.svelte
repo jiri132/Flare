@@ -23,6 +23,7 @@
 <style>
     .titlebar {
         height: 30px;
+        padding-left: 10px;
         background: #272727;
         user-select: none;
         display: flex;
@@ -43,7 +44,7 @@
         height: 15px;
         border-radius: 30px;
         border: 0;
-        margin: 7.5px 5px;
+        margin: 0px 4px;
     }
     .titlebar-button:hover {
         filter: brightness(65%);
