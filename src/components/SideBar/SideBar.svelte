@@ -39,13 +39,21 @@
     import { open } from '@tauri-apps/api/dialog'
     import { readDir, type FileEntry } from '@tauri-apps/api/fs'
 
-    let project_path : string;
+    let project_name : string;
+    let project_path : string | null;
     let project_files : FileEntry[] = [];
 
     function OpenProject() {
         open({directory: true})
         .then((result) => {
-            project_path = result as string;
+            project_path = result as string | null;
+
+            if (project_path === null) {
+                return;
+            }
+
+            const sep_project_path = project_path.split('\\');
+            project_name = sep_project_path[sep_project_path.length - 1];
 
             readDir(project_path, {recursive: true})
             .then((files) => {
@@ -58,17 +66,19 @@
                         return 0;
                     }
                 });
-
                 project_files = files;
+                console.log(project_files)
+                console.log(project_path)
+                console.log(project_name)
             });
-        })
+        });
     } 
 </script>
 
 <svelte:window  on:mouseup={handleMouseUp} on:mousedown={handleMousedown} on:mousemove={handleMouseMove}  bind:innerWidth/>
 
 <div id="panel" class="SideBar" style="width: {width}px;">
-    {#if project_path === undefined}
+    {#if project_path === undefined || project_path === null}
          <button on:click={OpenProject}>Open project</button>
     {/if}
 
@@ -85,11 +95,11 @@
 <style> 
     .SideBar {
         margin-top: 30px;
-        padding: 10px;
+        /* padding: 10px; */
 
         min-width: 180px;
         max-width: 65vw;
-        max-height: calc(100vh - 50px); /* 50px = padding-top(10) + padding-bottom(10) + margin-top(30)  */
+        max-height: calc(100vh - 30px); /* 50px = padding-top(10) + padding-bottom(10) + margin-top(30)  */
 
         overflow-y: auto;
         overflow-x: hidden;
