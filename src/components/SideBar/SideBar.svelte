@@ -67,9 +67,9 @@
                     }
                 });
                 project_files = files;
-                console.log(project_files)
-                console.log(project_path)
-                console.log(project_name)
+                // console.log(project_files)
+                // console.log(project_path)
+                // console.log(project_name)
             });
         });
     } 
