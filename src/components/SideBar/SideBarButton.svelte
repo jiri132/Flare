@@ -66,13 +66,21 @@
 
 
 <style>
+    
 
     button {
         border: 0;
-        text-align: start;
+
         background-color: transparent;
-        width: 100%;
         color: rgb(197, 197, 197);
+
+        width: 100%;
+        min-width: max-content;
+        min-height: 16px;
+        max-height: 16px;
+
+        text-align: start;
+        overflow: hidden;
     }
     button:hover {
         background-color: rgba(0,0,0,0.1);
@@ -80,7 +88,6 @@
 
     .children {
         margin-left: 5px;
-        /* border: solid red; */
         border-left: 2px solid rgb(97, 97, 97);
         width: 100%;
     }
