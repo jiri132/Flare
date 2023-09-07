@@ -1,6 +1,7 @@
 <script lang="ts">
     import { readTextFile, type FileEntry } from "@tauri-apps/api/fs";
     import { Content } from "../../store";
+  import { onMount } from "svelte";
     const self = arguments[0].__proto__.constructor;
 
     enum fileType {
@@ -30,6 +31,21 @@
         }
     }
 
+    onMount(() => {
+        _fileName = _fileType.toString() + " " + _fileName;
+
+        _directoryChildren.sort((f1 , f2) => {
+                    if (f1.children && !f2.children) {
+                        return -1;
+                    } else if (!f1.children && f2.children) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                })
+    });
+
+
 </script>
 
 <button on:click={interaction}>
@@ -50,12 +66,13 @@
 
 
 <style>
+
     button {
         border: 0;
         text-align: start;
         background-color: transparent;
         width: 100%;
-        
+        color: rgb(197, 197, 197);
     }
     button:hover {
         background-color: rgba(0,0,0,0.1);
@@ -64,7 +81,7 @@
     .children {
         margin-left: 5px;
         /* border: solid red; */
-        border-left: 2px solid red;
+        border-left: 2px solid rgb(97, 97, 97);
         width: 100%;
     }
 </style>
