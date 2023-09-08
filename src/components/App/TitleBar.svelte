@@ -1,8 +1,10 @@
 <script>
     import { appWindow } from '@tauri-apps/api/window'
+
+    export let primaryColor = "";
 </script>
 
-<div data-tauri-drag-region class="titlebar">
+<div data-tauri-drag-region class="titlebar" style="background-color:{primaryColor}">
     <button class="titlebar-button" id="titlebar-minimize" on:click={() => appWindow.minimize()}>
         <img
         src="https://api.iconify.design/mdi:window-minimize.svg"
