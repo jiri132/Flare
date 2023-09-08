@@ -19,10 +19,10 @@ export interface theme {
     secondary_dark? : string,
 
     SideBar: {
-        text_color: string, 
-        hover_color: string,
-        header_color: string,
-        standard_color: string,
+        text_color?: string, 
+        hover_color?: string,
+        header_color?: string,
+        standard_color?: string,
         
         /**
          * These stylings are not yet implemented but will be getting used as the application progresses
