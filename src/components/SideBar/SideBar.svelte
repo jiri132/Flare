@@ -1,6 +1,6 @@
 <script lang="ts">
     import SideBarButton from './SideBarButton.svelte';
-
+    export let SideBarTheme;
 
     let width = 180;
     let resize_width = 20;
@@ -42,6 +42,8 @@
     let project_name : string;
     let project_path : string | null;
     let project_files : FileEntry[] = [];
+    let folded_project : boolean = true;
+
 
     function OpenProject() {
         open({directory: true})
@@ -77,11 +79,16 @@
 
 <svelte:window  on:mouseup={handleMouseUp} on:mousedown={handleMousedown} on:mousemove={handleMouseMove}  bind:innerWidth/>
 
-<div id="panel" class="SideBar" style="width: {width}px;">
+<div id="panel" class="SideBar" style="width: {width}px;  ">
     {#if project_path === undefined || project_path === null}
          <button on:click={OpenProject}>Open project</button>
+    
+    {:else}
+        <button class="project-btn" on:click={() => {folded_project = !folded_project}}>{project_name}</button>
     {/if}
 
+    {#if folded_project}
+    <div class="file">
     {#each project_files as file} 
         {#if file.children !== undefined} 
             <SideBarButton  _fileName={file.name} _filePath={file.path}  _fileType={0} _directoryChildren={file.children} />
@@ -89,6 +96,8 @@
             <SideBarButton  _fileName={file.name} _filePath={file.path} _fileType={1} />
         {/if}
     {/each}
+    </div>
+    {/if}
 </div>
 
 
@@ -111,13 +120,20 @@
         flex-direction: column;
     }
 
+    .project-btn {
+        text-align: start;
+        background-color: gray;
+    }
+    .file {
+        margin-left: 15px;
+    }
     button {
         border: 0;
         padding: 0.3rem 1rem;
         /* margin: 10px; */
-        background-color: rgb(0, 136, 255);
+        background-color: rgb(78, 78, 78);
     }
-    button::hover {
-        background-color: black;
+    button:hover {
+        background-color: rgba(0, 0, 0, 0.219);
     }
 </style>

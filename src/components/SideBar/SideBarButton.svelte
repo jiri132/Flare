@@ -1,7 +1,7 @@
 <script lang="ts">
     import { readTextFile, type FileEntry } from "@tauri-apps/api/fs";
     import { Content } from "../../store";
-  import { onMount } from "svelte";
+    import { onMount } from "svelte";
     const self = arguments[0].__proto__.constructor;
 
     enum fileType {
@@ -48,7 +48,9 @@
 
 </script>
 
-<button on:click={interaction}>
+<button on:click={interaction}
+    style=""
+>
     {_fileName}
 </button>
 <div class="children">
@@ -71,13 +73,14 @@
     button {
         border: 0;
 
-        background-color: transparent;
+       background-color: transparent;
         color: rgb(197, 197, 197);
 
         width: 100%;
         min-width: max-content;
-        min-height: 16px;
-        max-height: 16px;
+        min-height: 18px;
+        max-height: 18px;
+        font-size:16px;
 
         text-align: start;
         overflow: hidden;
