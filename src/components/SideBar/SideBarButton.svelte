@@ -8,6 +8,8 @@
         directory = 0,
         file = 1
     }
+    	
+    export let txt_c : string | undefined;
 
     export let _fileType : fileType;
     export let _directoryChildren : FileEntry[] = [];
@@ -49,7 +51,7 @@
 </script>
 
 <button on:click={interaction}
-    style=""
+    style="color: {txt_c};"
 >
     {_fileName}
 </button>
@@ -57,9 +59,9 @@
     {#if show_children} 
     {#each _directoryChildren as child}
         {#if child.children !== undefined} 
-            <svelte:component this={self}  _fileName={child.name} _filePath={child.path}  _fileType={0} _directoryChildren={child.children} />
+            <svelte:component this={self} txt_c={txt_c} _fileName={child.name} _filePath={child.path}  _fileType={0} _directoryChildren={child.children} />
         {:else}
-            <svelte:component this={self}  _fileName={child.name} _filePath={child.path} _fileType={1} />
+            <svelte:component this={self} txt_c={txt_c} _fileName={child.name} _filePath={child.path} _fileType={1} />
         {/if}
     {/each}
     {/if}

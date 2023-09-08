@@ -1,6 +1,16 @@
 <script lang="ts">
     import SideBarButton from './SideBarButton.svelte';
-    export let SideBarTheme;
+    export let SideBarTheme : {
+        text_color?: string, 
+        hover_color?: string,
+        header_color?: string,
+        standard_color?: string,
+        
+        /**
+         * These stylings are not yet implemented but will be getting used as the application progresses
+         */
+        viewing_file_color?: string,
+    };
 
     let width = 180;
     let resize_width = 20;
@@ -79,21 +89,24 @@
 
 <svelte:window  on:mouseup={handleMouseUp} on:mousedown={handleMousedown} on:mousemove={handleMouseMove}  bind:innerWidth/>
 
-<div id="panel" class="SideBar" style="width: {width}px;  ">
+<div id="panel" class="SideBar" style="width: {width}px; 
+color: {SideBarTheme.text_color} !important;
+background-color: {SideBarTheme.standard_color};
+">
     {#if project_path === undefined || project_path === null}
-         <button on:click={OpenProject}>Open project</button>
+         <button on:click={OpenProject} style="background-color: {SideBarTheme.header_color};">Open project</button>
     
     {:else}
-        <button class="project-btn" on:click={() => {folded_project = !folded_project}}>{project_name}</button>
+        <button class="project-btn" style="background-color: {SideBarTheme.header_color};" on:click={() => {folded_project = !folded_project}}>{project_name}</button>
     {/if}
 
     {#if folded_project}
     <div class="file">
     {#each project_files as file} 
         {#if file.children !== undefined} 
-            <SideBarButton  _fileName={file.name} _filePath={file.path}  _fileType={0} _directoryChildren={file.children} />
+            <SideBarButton txt_c={SideBarTheme.text_color} _fileName={file.name} _filePath={file.path}  _fileType={0} _directoryChildren={file.children} />
         {:else}
-            <SideBarButton  _fileName={file.name} _filePath={file.path} _fileType={1} />
+            <SideBarButton txt_c={SideBarTheme.text_color} _fileName={file.name} _filePath={file.path} _fileType={1} />
         {/if}
     {/each}
     </div>
